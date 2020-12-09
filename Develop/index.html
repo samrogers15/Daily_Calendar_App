@@ -49,12 +49,10 @@
         const currentTime = ['9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
         const timeId = ['9', '10', '11', '12', '13', '14', '15', '16', '17']
         const currentHour = moment().hour();
-        console.log(currentHour);
-        console.log(timeId);
         for (let i = 0; i < currentTime.length; i++) {
           const div$ = $('<div>').addClass('row time-block');
           const div2$ = $('<div>').addClass('hour col-md-1').text(currentTime[i]).attr('id', timeId[i]);
-          const textArea$ = $('<textarea>').addClass('description col-md-10');
+          const textArea$ = $('<textarea>').addClass('description col-md-10').attr('id', timeId[i]);
             if (currentHour > timeId[i]) {
               textArea$.addClass('past');
             } else if (currentHour < timeId[i]) {
@@ -67,6 +65,16 @@
           $('.container').append(div$);
         }
       }
+
+      // Make function for adding info to local storage and parsing info from local storage
+      // make an object using id from div2$ and id from textArea$ - put that in local storage, then back it out
+      function saveInfo(event) {
+        event.preventDefault();
+
+
+      }
+
+
     </script>
   </body>
 </html>
