@@ -41,34 +41,31 @@
       // make functions
 
       $('#currentDay').text(moment().format('MMMM Do YYYY, h:mm:ss a'));
+      renderSchedule();
 
-    
-      const currentHour = moment().hour();
-      for (let i = 9; i < 17; i++) {
-        const div$ = $('<div>').addClass('row').attr('id', i);
-        const div2$ = $('<div>').addClass('hour');
-        const textArea$ = $('<textarea>').addClass('textarea');
-        const button$ = $('<button>').addClass('saveBtn');
-        $('.container').append(div$);
-        div$.append(div2$, textArea$, button$);
-        
-      }
-
-      // for (i = 9; i < 17; i++); {
-      //   var newDiv$ = $('<div>').addClass('time-block row').attr('id', timeId[i]);
-      //   var newDiv2$ = $('<div>').addClass('hour');
-      //   var newTextArea$ = $('<textarea>').addClass('textarea');
-      //   var newButton$ = $('<button>').addClass('saveBtn');
-      //   $('.container').append(newDiv$);
-      //   newDiv2$.text(timeOfDay[i]);
-      //   newDiv$.append(newDiv2$);
-      //   newDiv$.append(newTextArea$);
-      //   newDiv$.append(newButton$);
-      // }
       
-
- 
-
+      function renderSchedule() {
+        const currentTime = ['9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
+        const timeId = ['9', '10', '11', '12', '13', '14', '15', '16', '17']
+        const currentHour = moment().hour();
+        console.log(currentHour);
+        console.log(timeId);
+        for (let i = 0; i < currentTime.length; i++) {
+          const div$ = $('<div>').addClass('row time-block');
+          const div2$ = $('<div>').addClass('hour col-md-1').text(currentTime[i]).attr('id', timeId[i]);
+          const textArea$ = $('<textarea>').addClass('description col-md-10');
+            if (currentHour > timeId[i]) {
+              textArea$.addClass('past');
+            } else if (currentHour < timeId[i]) {
+              textArea$.addClass('future');
+            } else {
+              textArea$.addClass('present');
+            };
+          const button$ = $('<button>').addClass('saveBtn col-md-1');
+          div$.append(div2$, textArea$, button$);
+          $('.container').append(div$);
+        }
+      }
     </script>
   </body>
 </html>
