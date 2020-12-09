@@ -36,14 +36,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script>
       
-      // make functions for render time rows
-      // make functions for adding event listeners
-      // make functions
-
-      $('#currentDay').text(moment().format('MMMM Do YYYY, h:mm:ss a'));
-      renderSchedule();
-
       
+      
+      
+      
+      $('#currentDay').text(moment().format('MMMM Do YYYY, h:mm a'));
+      renderSchedule();
+      // event listener for clicking save
+
+      // make functions for render time rows
       function renderSchedule() {
         const currentTime = ['9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
         const timeId = ['9', '10', '11', '12', '13', '14', '15', '16', '17']
@@ -61,7 +62,7 @@
             } else {
               textArea$.addClass('present');
             };
-          const button$ = $('<button>').addClass('saveBtn col-md-1');
+          const button$ = $('<button>').addClass('saveBtn col-md-1').append($('<i>').addClass('fas fa-save'));;
           div$.append(div2$, textArea$, button$);
           $('.container').append(div$);
         }
