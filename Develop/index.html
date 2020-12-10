@@ -36,18 +36,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script>
       
-      
-      
+      const currentTime = ['9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
+      const timeId = ['9', '10', '11', '12', '13', '14', '15', '16', '17']
+      // const textId = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+      // const buttonId = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
       
       
       $('#currentDay').text(moment().format('MMMM Do YYYY, h:mm a'));
       renderSchedule();
       // event listener for clicking save
-
+      
       // make functions for render time rows
       function renderSchedule() {
-        const currentTime = ['9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
-        const timeId = ['9', '10', '11', '12', '13', '14', '15', '16', '17']
+        
         const currentHour = moment().hour();
         for (let i = 0; i < currentTime.length; i++) {
           const div$ = $('<div>').addClass('row time-block');
@@ -60,7 +61,7 @@
             } else {
               textArea$.addClass('present');
             };
-          const button$ = $('<button>').addClass('saveBtn col-md-1').append($('<i>').addClass('fas fa-save'));;
+          const button$ = $('<button>').attr('id', timeId[i]).addClass('saveBtn col-md-1').append($('<i>').addClass('fas fa-save'));;
           div$.append(div2$, textArea$, button$);
           $('.container').append(div$);
         }
@@ -68,12 +69,27 @@
 
       // Make function for adding info to local storage and parsing info from local storage
       // make an object using id from div2$ and id from textArea$ - put that in local storage, then back it out
-      function saveInfo(event) {
+      $('.saveBtn').on('click', function(event) {
+
         event.preventDefault();
+        
+        const hourId = $(this).attr('id');
+        console.log(hourId);
+        const descriptionId = $(this).siblings('.description').val();
+        console.log(descriptionId);
+        
+        localStorage.setItem(hourId, descriptionId);
+
+        
 
 
-      }
+      });
 
+      // Need to finalize the get item from local storage!!!
+      // for (let i = 0; i < timeId.length; i++){
+      //   const savedSchedule = JSON.parse(localStorage.getItem('descriptionId'));
+      //   console.log(savedSchedule);
+      //   };
 
     </script>
   </body>
