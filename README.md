@@ -12,7 +12,7 @@
 This program was created with jQuery and uses an html page and a CSS style sheet. The program stores information in local storage and appends information that is stored in local storage when the calendar is refreshed. Additionally, the program uses the Moment.js library to work with dates and times.
 
 ## Screenshots
-![Code Quiz](./assets/code_quiz_screenshot.png)
+![Daily Calendar App](./Assets/daily_calendar_app.png)
 
 ## Technologies
 * HTML
@@ -20,7 +20,7 @@ This program was created with jQuery and uses an html page and a CSS style sheet
 * JQuery
 
 ## Live link
-https://samrogers15.github.io/code_quiz/
+https://samrogers15.github.io/Daily_Calendar_App/
 
 ## Contact
 Created by Sam Rogers (https://www.linkedin.com/in/samuelerogers/) - feel free to contact me.
