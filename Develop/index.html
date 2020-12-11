@@ -52,27 +52,27 @@
         // see if you can get it to work without timeID and just do i = 9 i < 18
 
         const currentHour = moment().hour();
-        for (let i = 9; i < currentTime.length; i++) {
+        for (let i = 0; i < currentTime.length; i++) {
           const div$ = $('<div>').addClass('row time-block');
           const div2$ = $('<div>').addClass('hour col-md-1').text(currentTime[i]).attr('id', timeId[i]);
           const textArea$ = $('<textarea>').addClass('description col-md-10').attr('id', timeId[i]);
-            if (currentHour > timeId[i]) {
-              textArea$.addClass('past');
-            } else if (currentHour < timeId[i]) {
-              textArea$.addClass('future');
-            } else {
-              textArea$.addClass('present');
-            };
-          const savedSchedule = localStorage.getItem(timeId[i]);
-          // create if statement that if saved schedule does not equal null, then append saved schedule to textArea$
-          console.log(savedSchedule);
-          
-
-          // console.log(savedSchedule);
-          // textArea$.
+          if (currentHour > timeId[i]) {
+            textArea$.addClass('past');
+          } else if (currentHour < timeId[i]) {
+            textArea$.addClass('future');
+          } else {
+            textArea$.addClass('present');
+          };
           const button$ = $('<button>').attr('id', timeId[i]).addClass('saveBtn col-md-1').append($('<i>').addClass('fas fa-save'));;
           div$.append(div2$, textArea$, button$);
           $('.container').append(div$);
+          const savedSchedule = localStorage.getItem(timeId[i]);
+          console.log(savedSchedule);
+          for ( let i = 0; i < timeId.length; i++) {
+            if (localStorage.key(i) === $('.description').attr('id')) {
+            textArea$.text(JSON.parse(savedSchedule)); 
+            }
+          }
         }
       }
 
@@ -83,9 +83,9 @@
         event.preventDefault();
         
         const hourId = $(this).attr('id');
-        console.log(hourId);
+        // console.log(hourId);
         const descriptionId = $(this).siblings('.description').val();
-        console.log(descriptionId);
+        // console.log(descriptionId);
         
         localStorage.setItem(hourId, JSON.stringify(descriptionId));
 
@@ -96,12 +96,12 @@
 
       // Need to finalize the get item from local storage!!!
 
-      for (let i = 0; i < localStorage.length; i++) {
-        const savedSchedule = localStorage.getItem(localStorage.key(i));
-        console.log(localStorage.key(i));
+      // for (let i = 0; i < localStorage.length; i++) {
+      //   const savedSchedule = localStorage.getItem(localStorage.key(i));
+      //   console.log(localStorage.key(i));
         // console.log(savedSchedule);
         
-      }
+      // }
       
       
 
