@@ -36,31 +36,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script>
       
+      // Global variables for time of day with AM/PM format as well as numbers to add IDs to elements
       const currentTime = ['9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
       const timeId = ['9', '10', '11', '12', '13', '14', '15', '16', '17']
-      // const textId = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-      // const buttonId = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
       
+      // Appends the day, date, and time from Moment.js library to the header
       $('#currentDay').text(moment().format('MMMM Do YYYY, h:mm:ss a'));
+      
+      // Function to update the second hand of the time from Moment.js every second
       setInterval(function(){
         $('#currentDay').text(moment().format('MMMM Do YYYY, h:mm:ss a'))
       }, 1000);
       
-      // calling render schedule function
+      // Calls the renderSchedule function to render the schedule to the page.
       renderSchedule();
-      // event listener for clicking save
       
-      // make functions for render time rows
+      // This function renders the schedule to the page
       function renderSchedule() {
         
-        // see if you can get it to work without timeID and just do i = 9 i < 18
-
+        // Creates a variable for the current hour
         const currentHour = moment().hour();
+        
+        // This loops over the currentTime array and creates an element for each time period that includes a div for hour of the day, a textarea to type in, and a button to click save.
         for (let i = 0; i < currentTime.length; i++) {
           const div$ = $('<div>').addClass('row time-block');
           const div2$ = $('<div>').addClass('hour col-md-1').text(currentTime[i]).attr('id', timeId[i]);
           const textArea$ = $('<textarea>').addClass('description col-md-10').attr('id', timeId[i]);
-          if (currentHour > timeId[i]) {
+          // This if/else statement sets the format for the textarea based on what the current time is
+            if (currentHour > timeId[i]) {
             textArea$.addClass('past');
           } else if (currentHour < timeId[i]) {
             textArea$.addClass('future');
@@ -70,8 +73,9 @@
           const button$ = $('<button>').attr('id', timeId[i]).addClass('saveBtn col-md-1').append($('<i>').addClass('fas fa-save'));;
           div$.append(div2$, textArea$, button$);
           $('.container').append(div$);
+
+          // The below variable grabs the schedule information from local storage and then loops over the local storage key and appends to the textarea if there is anything saved in local storage
           const savedSchedule = localStorage.getItem(timeId[i]);
-          console.log(savedSchedule);
           for ( let i = 0; i < timeId.length; i++) {
             if (localStorage.key(i) === $('.description').attr('id')) {
             textArea$.text(JSON.parse(savedSchedule)); 
@@ -80,36 +84,17 @@
         }
       }
 
-      // Make function for adding info to local storage and parsing info from local storage
-      // make an object using id from div2$ and id from textArea$ - put that in local storage, then back it out
+      // This code activates a function when the save button is click that stores the text content of the textarea into the local storage
       $('.saveBtn').on('click', function(event) {
 
         event.preventDefault();
         
         const hourId = $(this).attr('id');
-        // console.log(hourId);
+        
         const descriptionId = $(this).siblings('.description').val();
-        // console.log(descriptionId);
         
         localStorage.setItem(hourId, JSON.stringify(descriptionId));
-
-        
-
-
       });
-
-      // Need to finalize the get item from local storage!!!
-
-      // for (let i = 0; i < localStorage.length; i++) {
-      //   const savedSchedule = localStorage.getItem(localStorage.key(i));
-      //   console.log(localStorage.key(i));
-        // console.log(savedSchedule);
-        
-      // }
-      
-      
-
-
 
     </script>
   </body>
