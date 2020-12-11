@@ -78,7 +78,7 @@
         const descriptionId = $(this).siblings('.description').val();
         console.log(descriptionId);
         
-        localStorage.setItem(hourId, descriptionId);
+        localStorage.setItem(hourId, JSON.stringify(descriptionId));
 
         
 
@@ -86,10 +86,15 @@
       });
 
       // Need to finalize the get item from local storage!!!
-      // for (let i = 0; i < timeId.length; i++){
-      //   const savedSchedule = JSON.parse(localStorage.getItem('descriptionId'));
-      //   console.log(savedSchedule);
-      //   };
+      for (let i = 0; i < localStorage.length; i++) {
+        const savedSchedule = localStorage.getItem(localStorage.key(i));
+        console.log(savedSchedule);
+        
+      }
+      
+      
+
+
 
     </script>
   </body>
