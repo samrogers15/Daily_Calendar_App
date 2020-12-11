@@ -41,46 +41,22 @@
       // const textId = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
       // const buttonId = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
       
-      // $(document).ready(function() {
-      //   const momentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
-      //   $('#currentDay').text(momentTime);
-      //   renderSchedule();
-      //   const timeUpdate = function() {
-      //     date = moment(new Date ());
-      //     $('#currentDay').html(momentTime);
-      //   };
-        
-        
-      //   // setInterval(function(){
-      //   //   alert('hello'); }, 3000);
-      //   // setInterval(timeUpdate, 1000);
-
-      // });
-      // $('#currentDay').text(moment().format('MMMM Do YYYY, h:mm:ss a'));
-      // renderSchedule();
-      
       $('#currentDay').text(moment().format('MMMM Do YYYY, h:mm:ss a'));
       setInterval(function(){
         $('#currentDay').text(moment().format('MMMM Do YYYY, h:mm:ss a'))
       }, 1000);
+      
+      // calling render schedule function
       renderSchedule();
-      // make function for rendering moment time to top of page
-
-      // function renderTime() {
-      //   const momentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
-
-
+      // event listener for clicking save
       
-      
-
       // make functions for render time rows
       function renderSchedule() {
         
         // see if you can get it to work without timeID and just do i = 9 i < 18
 
         const currentHour = moment().hour();
-        for (let i = 0; i < timeId.length; i++) {
-          
+        for (let i = 0; i < currentTime.length; i++) {
           const div$ = $('<div>').addClass('row time-block');
           const div2$ = $('<div>').addClass('hour col-md-1').text(currentTime[i]).attr('id', timeId[i]);
           const textArea$ = $('<textarea>').addClass('description col-md-10').attr('id', timeId[i]);
