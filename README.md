@@ -1,5 +1,5 @@
 # Daily Calendar Application
-> This program quizzes a user on their knowledge of Javascript. It passes multiple choice questions to a user and allows them to select a specific answer within a given time frame (50s). If the user answers a question right, they gain a point and move on. If the user answers a question wrong, they lose 10s on the timer and move on. When the user finishes the quiz, they are prompted to enter their initials and upon entry, they are driven to a high score page that stores and displays high score values from the browser's local storage.
+> This program allows a user to put together a schedule of their daily tasks. The program displays the time of day at that current moment and keeps a running tally of the time as it continues to pass. If a user enters in a specific calendar item and clicks the save button, the text content of that calendar item gets saved to the users local storage. Upon refreshing the page, the calendar item will still be saved on the calendar (it will only disappear if the user clears their browser's local storage). Additionally, the formatting of the schedule will update as the hours in the day pass by - future calendar items will have a different format than calendar items in the past. Calendar items that are reflective of the current hour also have a different format.
  
 ## Table of contents
 * [General info](#general-info)
@@ -9,7 +9,7 @@
 * [Contact](#contact)
 
 ## General info
-This program was created within javascript and uses an html page, a css style sheet, and a javascript page. Everything is linked to the html page properly and the site is responsive such that if you view it from a mobile or tablet device, then it will operate properly.
+This program was created with jQuery and uses an html page and a CSS style sheet. The program stores information in local storage and appends information that is stored in local storage when the calendar is refreshed. Additionally, the program uses the Moment.js library to work with dates and times.
 
 ## Screenshots
 ![Code Quiz](./assets/code_quiz_screenshot.png)
@@ -17,7 +17,7 @@ This program was created within javascript and uses an html page, a css style sh
 ## Technologies
 * HTML
 * CSS
-* Javascript
+* JQuery
 
 ## Live link
 https://samrogers15.github.io/code_quiz/
